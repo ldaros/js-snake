@@ -3,6 +3,7 @@ let rez = 20;
 let food;
 let w;
 let h;
+let synth = new p5.MonoSynth();
 
 function setup() {
   createCanvas(400, 400);
@@ -49,20 +50,22 @@ function draw() {
 
   if (snake.eat(food)) {
     foodLocation();
+    synth.play("A6",0.8,0,0.25);
   }
 
   snake.update();
   snake.show();
 
   if (snake.isDead()) {
-    print("you died");
+    print("Game Over - F");
+    synth.play("G3",0.8,0,0.25);
     background(255, 0, 0);
     noLoop();
   }
 
   if (snake.len == w * h) {
     background(0, 255, 0);
-    print("you win");
+    print("Game Over - V");
     noLoop();
   }
 
