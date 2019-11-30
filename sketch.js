@@ -59,7 +59,7 @@ function draw() {
 
   noStroke();
   fill(255, 0, 0);
-  rect(food.x, food.y, 1, 1);
+  rect(food.x, food.y, 0.9, 0.9);
 
   if (snake.eat(food)) {
     foodLocation();

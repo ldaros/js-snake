@@ -22,7 +22,7 @@ class Snake {
     for (let i = 0; i < this.body.length; i++) {
       fill(0);
       noStroke();
-      rect(this.body[i].x, this.body[i].y, 1, 1);
+      rect(this.body[i].x, this.body[i].y, 0.9, 0.9);
     }
   }
 
@@ -58,7 +58,10 @@ class Snake {
     let y = this.body[this.body.length - 1].y;
     if (x == pos.x && y == pos.y) {
       print("Food Eaten");
-      this.grow();
+      let randomnumber = int(random(1, 5));
+      for (let i = 0; i < randomnumber; i++) {
+        this.grow();
+      }
       return true;
     }
     return false;
