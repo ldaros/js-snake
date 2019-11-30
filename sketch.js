@@ -5,7 +5,6 @@ let w;
 let h;
 let synth = new p5.MonoSynth();
 
-//test
 function setup() {
   createCanvas(400, 400);
   w = floor(width / rez);
