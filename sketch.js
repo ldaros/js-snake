@@ -3,6 +3,7 @@ let rez = 20;
 let food;
 let w;
 let h;
+let currentdirection;
 let synth = new p5.MonoSynth();
 
 function setup() {
@@ -12,7 +13,7 @@ function setup() {
   frameRate(8);
   snake = new Snake();
   foodLocation();
-
+  currentdirection = "";
 }
 
 function foodLocation() {
@@ -23,17 +24,22 @@ function foodLocation() {
 }
 
 function keyPressed() {
-  if (keyCode == UP_ARROW) {
+  if (keyCode == UP_ARROW && (currentdirection != "DOWN" || snake.body.length == 1)) {
     snake.setDir(0, -1);
+    currentdirection = "UP";
 
-  } else if (keyCode == DOWN_ARROW) {
+  } else if (keyCode == DOWN_ARROW && (currentdirection != "UP" || snake.body.length == 1)) {
     snake.setDir(0, 1);
+    currentdirection = "DOWN";
 
-  } else if (keyCode == LEFT_ARROW) {
+  } else if (keyCode == LEFT_ARROW && (currentdirection != "RIGHT" || snake.body.length == 1)) {
     snake.setDir(-1, 0);
+    currentdirection = "LEFT";
 
-  } else if (keyCode == RIGHT_ARROW) {
+  } else if (keyCode == RIGHT_ARROW && (currentdirection != "LEFT" || snake.body.length == 1)) {
     snake.setDir(1, 0);
+    currentdirection = "RIGHT";
+
   } else if (key == 'D') {
     snake.grow();
   }
@@ -50,7 +56,7 @@ function draw() {
 
   if (snake.eat(food)) {
     foodLocation();
-    synth.play("A6",0.8,0,0.25);
+    synth.play("A6", 0.8, 0, 0.25);
   }
 
   snake.update();
@@ -58,7 +64,7 @@ function draw() {
 
   if (snake.isDead()) {
     print("Game Over - F");
-    synth.play("G3",0.8,0,0.25);
+    synth.play("G3", 0.8, 0, 0.25);
     background(255, 0, 0);
     noLoop();
   }
