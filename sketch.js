@@ -43,7 +43,12 @@ function keyPressed() {
   } else if (key == 'D') {
     snake.grow();
   }
-
+  if (key == 'R' || key == 'r') {
+    setup();
+    loop();
+    draw();
+    synth.play("A6", 0.8, 0, 0.25);
+  }
 }
 
 function draw() {
@@ -56,7 +61,7 @@ function draw() {
 
   if (snake.eat(food)) {
     foodLocation();
-    synth.play("A6", 0.8, 0, 0.25);
+    synth.play("C6", 0.8, 0, 0.25);
   }
 
   snake.update();
@@ -66,6 +71,11 @@ function draw() {
     print("Game Over - F");
     synth.play("G3", 0.8, 0, 0.25);
     background(255, 0, 0);
+    textSize(1);
+    textAlign(CENTER, CENTER);
+    text("Game Over\nPress R to Restart", w / 2, h / 2);
+    text("Score: " + snake.body.length, w / 2, h - 1)
+
     noLoop();
   }
 
