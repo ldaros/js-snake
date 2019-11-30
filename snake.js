@@ -8,6 +8,7 @@ class Snake {
     this.ydir = 0;
   }
 
+  // updates the snake position
   update() {
     let head = this.body[this.body.length - 1].copy();
     this.body.shift();
@@ -16,6 +17,7 @@ class Snake {
     this.body.push(head);
   }
 
+  // draws the snake on screen
   show() {
     for (let i = 0; i < this.body.length; i++) {
       fill(0);
@@ -24,11 +26,17 @@ class Snake {
     }
   }
 
+  // sets the movement direction
+  // UP    =  0, -1
+  // DOWN  =  0,  1
+  // LEFT  = -1,  0
+  // RIGHT =  1,  0
   setDir(x, y) {
     snake.xdir = x;
     snake.ydir = y;
   }
 
+  // checks the losing conditions
   isDead() {
     let x = this.body[this.body.length - 1].x;
     let y = this.body[this.body.length - 1].y;
@@ -44,17 +52,19 @@ class Snake {
     return false;
   }
 
+  // eat
   eat(pos) {
     let x = this.body[this.body.length - 1].x;
     let y = this.body[this.body.length - 1].y;
     if (x == pos.x && y == pos.y) {
-      print("FOOD EAT");
+      print("Food Eaten");
       this.grow();
       return true;
     }
     return false;
   }
 
+  // makes small snake become big snake
   grow() {
     let head = this.body[this.body.length - 1].copy();
     this.len++;
