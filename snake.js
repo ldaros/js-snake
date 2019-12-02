@@ -32,8 +32,12 @@ class Snake {
   // LEFT  = -1,  0
   // RIGHT =  1,  0
   setDir(x, y) {
-    snake.xdir = x;
-    snake.ydir = y;
+    if (x != this.xdir * -1) {
+      this.xdir = x;
+    }
+    if (y != this.ydir * -1) {
+      this.ydir = y;
+    }
   }
 
   // checks the losing conditions

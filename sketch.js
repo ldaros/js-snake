@@ -3,7 +3,7 @@ let rez = 20;
 let food;
 let w;
 let h;
-let currentdirection = "";
+let keydelay = false;
 let synth = new p5.MonoSynth();
 
 //starts things
@@ -25,23 +25,23 @@ function foodLocation() {
 
 //inputs
 function keyPressed() {
-  if (keyCode == UP_ARROW && (currentdirection != "DOWN" || snake.body.length == 1)) {
-    snake.setDir(0, -1);
-    currentdirection = "UP";
-
-  } else if (keyCode == DOWN_ARROW && (currentdirection != "UP" || snake.body.length == 1)) {
-    snake.setDir(0, 1);
-    currentdirection = "DOWN";
-
-  } else if (keyCode == LEFT_ARROW && (currentdirection != "RIGHT" || snake.body.length == 1)) {
-    snake.setDir(-1, 0);
-    currentdirection = "LEFT";
-
-  } else if (keyCode == RIGHT_ARROW && (currentdirection != "LEFT" || snake.body.length == 1)) {
-    snake.setDir(1, 0);
-    currentdirection = "RIGHT";
-    //secret key
-  } else if (key == 'Z') {
+  if (!keydelay) {
+    if (keyCode == UP_ARROW) {
+      snake.setDir(0, -1);
+      keydelay = true;
+    } else if (keyCode == DOWN_ARROW) {
+      snake.setDir(0, 1);
+      keydelay = true;
+    } else if (keyCode == LEFT_ARROW) {
+      snake.setDir(-1, 0);
+      keydelay = true;
+    } else if (keyCode == RIGHT_ARROW) {
+      snake.setDir(1, 0);
+      keydelay = true;
+    }
+  }
+  //secret key
+  if (key == 'Z') {
     snake.grow();
   }
   //restarts the game
@@ -67,6 +67,7 @@ function draw() {
   }
 
   snake.update(); //moves the snake
+  keydelay = false;
   snake.show(); //draws the snake
 
   //game over screen
