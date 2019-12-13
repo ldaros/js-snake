@@ -1,0 +1,8 @@
+{
+    "version": "2.0.0",
+    "command": "Brave",
+    "windows": {
+        "command": "C:\\Program Files (x86)\\BraveSoftware\\Brave-Browser\\Application\\brave.exe"
+    },
+    "args": ["${workspaceFolder}\\index.html"]
+}
