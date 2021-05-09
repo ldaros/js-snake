@@ -1,3 +1,3 @@
 # js-snake
 
-Snake game recreation using p5js.
+A remake of the classic game Snake, made with JavaScript using the p5.js library.
